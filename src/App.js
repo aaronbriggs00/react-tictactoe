@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import Game from './components/Game.js'
-import './App.css';
+import logo from "./logo.svg";
+import Stage from "./components/Stage.js";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Game />
+      <h1>Tic Tac Toe</h1>
+      <Stage />
     </div>
   );
 }

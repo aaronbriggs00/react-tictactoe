@@ -1,0 +1,11 @@
+.square {
+  background-color: rgb(94, 133, 139);
+  width: 200px;
+  height: 200px;
+  border: rgb(84, 92, 89) 10px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  color: white;
+}

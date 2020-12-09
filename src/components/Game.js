@@ -1,31 +1,40 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Square from "./Square.js";
+import "./Game.css";
 
-export default class Game extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Tic Tac Toe</h1>
-        <table>
-          <tr>
-            <td>
-              <Square content="hello" />
-            </td>
-            <td className="vert"></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td className="hori"></td>
-            <td className="vert hori"></td>
-            <td className="hori"></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td className="vert"></td>
-            <td></td>
-          </tr>
-        </table>
+export default function Game({ boardCheck, clearWinner }) {
+  const [array, setArray] = useState(Array(9).fill(""));
+  const [nextTurn, setNextTurn] = useState("X");
+
+  const clearBoard = () => {
+    setArray(Array(9).fill(""));
+    clearWinner();
+  };
+  boardCheck(array, nextTurn);
+
+  const toggleValue = (key) => {
+    const newArray = array.map((value, index) => {
+      if (index === key) {
+        return nextTurn;
+      }
+      return value;
+    });
+    setArray(newArray);
+    if (nextTurn !== "X") {
+      setNextTurn("X");
+    } else {
+      setNextTurn("O");
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={clearBoard}>reset</button>
+      <div className="board">
+        {array.map((value, index) => (
+          <Square key={index} id={index} value={value} action={toggleValue} />
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 }

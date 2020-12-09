@@ -1,11 +1,19 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import "./Square.css";
 
-export default class Square extends Component {
-  render(props) {
-    return (
-      <div>
-        <p>{this.props.content}</p>
-      </div>
-    );
-  }
+export default function Square({ value, action, id }) {
+  const update = () => {
+    action(id);
+  };
+
+  return (
+    <div>
+      {!value && (
+        <span className="square" onClick={update}>
+          {value}
+        </span>
+      )}
+      {value && <span className="square">{value}</span>}
+    </div>
+  );
 }
