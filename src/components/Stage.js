@@ -20,7 +20,6 @@ export default function Stage() {
     ];
     winningValues.forEach((combo) => {
       var rowCheck = combo.map((indexValue) => array[indexValue]);
-      console.log(rowCheck);
       if (
         rowCheck.filter((x) => x === "X").length === 3 ||
         rowCheck.filter((x) => x === "O").length === 3
