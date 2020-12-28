@@ -25,9 +25,9 @@ export default function Stage() {
         rowCheck.filter((x) => x === "X").length === 3 ||
         rowCheck.filter((x) => x === "O").length === 3
       ) {
-        if (nextTurn === "X") {
+        if (nextTurn === "X" && !winnerFound) {
           setWinnerFound("O");
-        } else {
+        } else if (!winnerFound) {
           setWinnerFound("X");
         }
       }
