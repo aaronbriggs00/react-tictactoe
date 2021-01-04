@@ -5,7 +5,6 @@ import "./Game.css";
 
 export default function Game({ boardCheck, clearWinner }) {
   const [array, setArray] = useState([]);
-  // const [array, setArray] = useState(Array(9).fill(""));
   const [nextTurn, setNextTurn] = useState("X");
 
   const db = firebase.firestore().collection("Game");
@@ -63,7 +62,6 @@ export default function Game({ boardCheck, clearWinner }) {
   // Firebase Edit End
 
   const clearBoard = () => {
-    clearWinner();
     db.doc("Board")
       .update({
         0: "",
@@ -79,17 +77,18 @@ export default function Game({ boardCheck, clearWinner }) {
       .catch((err) => {
         console.error(err);
       });
+    db.doc("Winner")
+      .update({
+        value: "",
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
   boardCheck(array, nextTurn);
 
   const toggleValue = (key) => {
     editSquare(key, nextTurn);
-    // const newArray = array.map((value, index) => {
-    //   if (index === key) {
-    //     return nextTurn;
-    //   }
-    //   return value;
-    // });
     if (nextTurn !== "X") {
       setNextTurn("X");
     } else {
